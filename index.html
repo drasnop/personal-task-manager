@@ -1,21 +1,35 @@
 <!DOCTYPE html PUBLIC>
 <html>
-  <head>
-    <title>Personal Task Manager</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="jquery-2.0.0.min.js"></script>
-    <script type="text/javascript" src="lists.js"></script>
-  </head>
-  <body>
-    <div id="center_holder">
-      <div id="sidebar">
-        <ul id="toggle_lists">
-          <li> <input type=checkbox> List 1 </li>
-          <li> <input type=checkbox> List 2 </li>
-          <li> <input type=checkbox> List 3 </li>
+<head>
+  <title>Personal Task Manager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="js/libs/jquery-2.0.0.min.js"></script>
+  <script type="text/javascript" src="js/libs/jquery-ui-1.10.3.js"></script>
+  <script type="text/javascript" src="js/rendering.js"></script>
+  <script type="text/javascript" src="js/auxiliary.js"></script>
+</head>
+<body>
+  <div id="center_holder">
+    <div id="sidebar">
+      <ul id="toggle_lists">
+        <li> <input type=checkbox> List 1 </li>
+        <li> <input type=checkbox> List 2 </li>
+        <li> <input type=checkbox> List 3 </li>
+        <li> <input type=checkbox> List 4 </li>
+      </ul>
+    </div><!--
+ --><div id="content">
+      <div id="header">
+        <div id="searchbox" contenteditable> Search... </div>
       </div>
-      <div id="content"></div>
+      <div id="lists_area">
+        <div id="list1" class="todolist sortable" data-color="180,216,231"></div><!--
+        --><div id="list2" class="todolist sortable" data-color="255,174,174"></div><!--
+        --><div id="list3" class="todolist sortable" data-color="255,236,148"></div><!--
+        --><div id="list4" class="todolist sortable" data-color="176,229,124"></div>
+      </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
