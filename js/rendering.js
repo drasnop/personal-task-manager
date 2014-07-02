@@ -18,11 +18,12 @@ var items=["call back Amy",
 var white="255,255,255";
 var green="176,229,124";
 var lightblue="180,216,231";
+var darkblue="130,201,236";
 var yellow="255,236,148";
 var pink="255,174,174";
 
 function generateItem(item, color){
-	return "<div class='item' style='background-color: rgba("+color+", .85)' data-color=["+color+"] data-activated='false'> \
+	return "<div class='item' style='background-color: rgb("+color+")' data-color=["+color+"] data-activated='false'> \
 				<div class='checkbox' data-checked='false'>  \
 					<div class='square hiddenIcon'></div><div class='checkmark'>✔</div>  \
 				</div>	 \
@@ -32,10 +33,6 @@ function generateItem(item, color){
 					<img class='hiddenIcon opacityButton' src='img/calendar16.png' title='Set date/time'>  \
 				</div>    \
 				<img class='pin hiddenIcon opacityButton' src='img/pin16.png' data-pinned='false' data-dialogueExpanded='false' title='Pin item to main list'>    \
-				<div class='dialogueElement dialogue'> \
-					<div class='dialogueElement setImportance' title='Set importance level'>!</div>  \
-					<div class='dialogueElement createSubtask' title='Create subtask'>+</div>  \
-				</div>  \
 			</div>";
 }
 
@@ -171,10 +168,6 @@ function initializeItemsBehavior(){
 }
 
 
-function invisible(){
-	$(this).css('visibility','hidden');
-}
-
 function populateList(id){
 	var list=$("#"+id);
 	var color=list.data('color');
@@ -184,6 +177,24 @@ function populateList(id){
 	}
 }
 
+function toggleList(i,checked){
+	if(checked)
+		$("#list"+i).show("fast");
+	else
+		$("#list"+i).hide("fast");
+}
+
+function initializeToggleLists(){
+	for(var i=1; i<=4; i++){
+		$("#list"+i).toggle(!$("#toggle_list"+i).checked);
+		$("#toggle_list"+i).click(
+			(function(j){
+				return function(){
+					toggleList(j,this.checked);
+				}
+			})(i));
+	}
+}
 
 $(document).ready(function(){
 	populateList("list1");
@@ -227,8 +238,20 @@ $(document).ready(function(){
 		$(this).html("");
 	});
 
+	// Show/hide drop shadow from the header
+	$(window).scroll(function(){
+		console.log($("body").scrollTop());
+		if($("body").scrollTop()>0)
+			$("#header").css("box-shadow","-10px -7px 20px 0px #444");
+		else
+			$("#header").css("box-shadow","none");
+	});
+
 	// Initialize items
 	initializeItemsBehavior();
+
+	// Initialize show/hide lists
+	initializeToggleLists();
 });
 
 
