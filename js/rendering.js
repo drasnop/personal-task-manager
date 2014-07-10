@@ -178,6 +178,7 @@ function populateList(id){
 }
 
 function toggleList(i,checked){
+	console.log(i);
 	if(checked)
 		$("#list"+i).show("fast");
 	else
@@ -197,7 +198,7 @@ function initializeToggleLists(){
 }
 
 $(document).ready(function(){
-	populateList("list1");
+	//populateList("list1");
 	populateList("list2");
 	populateList("list3");
 	populateList("list4");

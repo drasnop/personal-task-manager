@@ -1,35 +1,46 @@
 <!DOCTYPE html PUBLIC>
-<html>
+<html ng-app="todos">
 <head>
   <title>Personal Task Manager</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="style.css">
   <script type="text/javascript" src="js/libs/jquery-2.0.0.min.js"></script>
   <script type="text/javascript" src="js/libs/jquery-ui-1.10.3.js"></script>
+  <script type="text/javascript" src="js/libs/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/rendering.js"></script>
   <script type="text/javascript" src="js/auxiliary.js"></script>
 </head>
-<body>
+<body ng-controller="TodosController as todos">
   <div id="center_holder">
     <div id="sidebar">
       <ul id="toggle_lists">
-        <li> <input id="toggle_list1" type=checkbox checked> List 1 </li>
-        <li> <input id="toggle_list2" type=checkbox checked> List 2 </li>
-        <li> <input id="toggle_list3" type=checkbox checked> List 3 </li>
-        <li> <input id="toggle_list4" type=checkbox checked> List 4 </li>
+        <li ng-repeat="list in todos.lists"> 
+          <input type=checkbox  checked={{list.show}}> {{list.name}}
+        </li>
       </ul>
     </div><!--
- --><div id="content">
-      <div id="header">
-        <div id="searchbox" contenteditable> Search... </div>
-      </div>
-      <div id="lists_area">
-        <div id="list1" class="todolist sortable" data-color="130,201,236"></div><!--
-        --><div id="list2" class="todolist sortable" data-color="255,174,174"></div><!--
-        --><div id="list3" class="todolist sortable" data-color="255,236,148"></div><!--
-        --><div id="list4" class="todolist sortable" data-color="176,229,124"></div>
+  --><div id="content">
+  <div id="header">
+    <div id="searchbox" contenteditable> Search... </div>
+  </div>
+  <div id="lists_area">
+    <div class="todolist sortable" ng-repeat="todolist in todos.lists" ng-show="todolist.show" style={{"background-color: rgb("+todolist.color+")"}} ng-style="{'background-color': 'rgb('+todolist.color+')'}">
+      <div class="listName contenteditable" contenteditable>{{todolist.name}}</div>
+      <div class='item' ng-repeat="item in todolist.items" ng-style="{'background-color': 'rgb('+todolist.color+')'}" data-color={{todolist.color}} data-activated='false'> 
+        <div class='checkbox' data-checked='false'>  
+          <div class='square hiddenIcon'></div><div class='checkmark'>✔</div>  
+        </div>   
+        <div class='description contenteditable' contenteditable>{{item.description}}</div>  
+        <div class='setDateTime'>    
+          <div class='contenteditable dateTimeField' contenteditable></div>    
+          <img class='hiddenIcon opacityButton' src='img/calendar16.png' title='Set date/time'>  
+        </div>    
+        <img class='pin hiddenIcon opacityButton' src='img/pin16.png' data-pinned='false' data-dialogueExpanded='false' title='Pin item to main list'>    
       </div>
     </div>
   </div>
+</div>
+</div>
 </body>
 </html>
