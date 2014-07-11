@@ -59,6 +59,7 @@ body {
 	display: inline-block;
 	background-color: #fff;
 	color: #202020;
+	font-size: 90%;
 }
 
 #header {
@@ -158,8 +159,6 @@ body {
 	position: absolute;
 	right: 6px;
 	bottom: 6px;
-
-	visibility: hidden;
 }
 
 .todolist .listName{
@@ -175,9 +174,6 @@ body {
 	cursor: pointer;
 	min-height: 23px;
 	margin-bottom: 1px;
-
-	font-size: 90%;
-	text-align: left;
 
 	/* the only use of this is to get the icons inside to display correctly */
 	position: relative;
@@ -226,7 +222,6 @@ body {
 }
 
 .checkbox .checkmark{
-	display: none;
 	margin-left: 4px;
 	margin-top: 4px;
 }
@@ -234,11 +229,16 @@ body {
 .newItem{
 	color: #333333;
 	font-style: italic;
-	font-size: 90%;
 	padding: 3px;
-	padding-left: 21px;
+	padding-left: 19px;
 	padding-top: 4px;
 	cursor: pointer;
+}
+
+.newItem:focus{
+	color:#202020;
+	font-style: normal;
+	padding-left: 17px;
 }
 
 /* this is the only way I found to prevent an empty line
