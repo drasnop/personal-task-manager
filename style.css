@@ -36,6 +36,7 @@ body {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	font-size: 110%;
 }
 
 #toggle_lists li{
@@ -59,7 +60,6 @@ body {
 	display: inline-block;
 	background-color: #fff;
 	color: #202020;
-	font-size: 90%;
 }
 
 #header {
@@ -176,11 +176,6 @@ body {
 	position: relative;
 }
 
-#temporary-list-for-draggable-items{
-	font-size: 90%; 
-	text-align: left;
-}
-
 .todolist .trashbin{
 	position: absolute;
 	right: 6px;
@@ -198,8 +193,11 @@ body {
 
 .item{  
 	cursor: pointer;
-	min-height: 23px;
-	margin-bottom: 1px;
+	min-height: 24px;
+	/*margin-bottom: 1px;*/
+
+	/* to prevent the text for centering when drag & drop */
+	text-align: left;
 
 	/* the only use of this is to get the icons inside to display correctly */
 	position: relative;
