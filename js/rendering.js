@@ -125,10 +125,6 @@ $(document).ready(function(){
 		});
 	});*/
 
-	$('#searchbox').click(function(){
-		$(this).html("");
-	});
-
 	// Show/hide drop shadow from the header
 	$(window).scroll(function(){
 		if($("body").scrollTop()>0)

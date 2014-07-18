@@ -17,7 +17,7 @@ body {
 
 #sidebar {
 	width: 250px;
-	height: 100vh;
+	height: 101vh;	/* to force the scrollbar to be present, otherwise ugly appear/disappear offset when searching */
 	display: inline-block;
 	vertical-align: top;
 
@@ -92,10 +92,30 @@ body {
 	border-color: lightgrey;
 }
 
-#clear_search{
+#searchbox.borderColorGrey{
+	border-color: lightgrey;
+}
+
+#searchbox input{
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 315px;
+/*	position: absolute;
+	top: 16px;
+	left: 20px;
+	width: 320px;
+	padding: 3px 5px 4px 5px;*/
+}
+
+#searchbox input:focus{
+	outline:none;
+}
+
+#searchbox img{
 	position: absolute;
-	top: 21px;
-	left: 347px;
+	top: 2px;
+	right: 2px;
 }
 
 #lists_area {

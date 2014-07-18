@@ -2,11 +2,10 @@ var app = angular.module('todos',['contenteditable']);
 
 app.controller('contenteditableController', ['$scope', function($scope) {}]);
 
-app.controller('TodosController', ['$rootScope', function($rootScope){
+app.controller('TodosController', function($scope, focus){
 	this.lists = lists;
-	this.searchBoxText = "Search...";
-	//this.searchQuery = "";
-	$rootScope.search=false;
+	this.searchQuery = "";
+	this.activeSearch = false;
 
 	this.toggle = function(list){
 		list.show= !list.show;
@@ -48,26 +47,32 @@ app.controller('TodosController', ['$rootScope', function($rootScope){
 	}
 
 	this.searchBoxFocus = function(){
-		$rootScope.search=true;
-		this.searchBoxText="";
+		this.activeSearch=true;
+		focus("input");
 	}
 
-	this.searchBoxBlur = function(){
-		$rootScope.search=false;
-		this.searchBoxText="Search...";
+	this.clearSearch = function(){
+		this.activeSearch=false;
+		this.searchQuery="";
 	}
-}]);
+});
 
-app.filter('textfilter',['$rootScope', function ($rootScope) {
-	return function(items, searchString) {
-		if(!$rootScope.search)
-			return items;
-
-		var filtered = [];            
-		searchString = searchString.toLowerCase();
-		angular.forEach(items, function(item) {
-			if( item.description.toLowerCase().indexOf(searchString) >= 0 ) filtered.push(item);
+app.directive('focusOn', function() {
+	return function(scope, elem, attr) {
+		console.log("directive");
+		scope.$on('focusOn', function(e, name) {
+			if(name === attr.focusOn) {
+				elem[0].focus();
+			}
 		});
-		return filtered;
 	};
-}]);
+});
+
+app.factory('focus', function ($rootScope, $timeout) {
+	return function(name) {
+		console.log("factory");
+		$timeout(function (){
+			$rootScope.$broadcast('focusOn', name);
+		});
+	}
+});
