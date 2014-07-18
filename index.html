@@ -28,21 +28,22 @@
 
   --><div id="content">
   <div id="header">
-    <input id="searchbox" ng-model="todos.searchfor"></input>
+    <input id="searchbox" ng-model="todos.searchBoxText" ng-focus="todos.searchBoxFocus()"></input>
+    <img id="clear_search" class="opacityButton" src="img/xicon19.png" title="Clear search" ng-click="todos.searchBoxBlur()"/>
   </div>
 
   <div id="lists_area">
 
     <div class="todolist sortable" ng-repeat="list in todos.lists" ng-show="list.show" ng-hide="list.searchResults.length == 0" style={{"background-color: rgb("+list.color+")"}} ng-style="{'background-color': 'rgb('+list.color+')'}">
 
-      <div class="listName contenteditable" contenteditable>{{list.name}}</div>
+      <div class="listName contenteditable" contenteditable>{{list.searchResults.length}}</div>
       
-      <div class='item' ng-repeat="task in list.searchResults=(list.tasks | textfilter:todos.searchfor)" 
+      <div class='item' ng-repeat="task in list.searchResults=(list.tasks | textfilter:todos.searchBoxText)" 
       ng-style="{'background-color': 'rgb('+list.color+')'}" data-color={{list.color}} data-activated='false'> 
-      <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)">  
-        <div class='square hiddenIcon' ng-hide="task.completed"></div>
-        <div class='checkmark' ng-show="task.completed">✔</div>  
-      </div>   
+        <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)">  
+          <div class='square hiddenIcon' ng-hide="task.completed"></div>
+          <div class='checkmark' ng-show="task.completed">✔</div>  
+        </div>   
       <div class='description contenteditable'
       ng-controller="contenteditableController" contenteditable="true"
       ng-model="task.description"

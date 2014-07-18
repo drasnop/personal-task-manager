@@ -92,6 +92,12 @@ body {
 	border-color: lightgrey;
 }
 
+#clear_search{
+	position: absolute;
+	top: 21px;
+	left: 347px;
+}
+
 #lists_area {
 	position: absolute;
 	top:60px;

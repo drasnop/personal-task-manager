@@ -2,9 +2,11 @@ var app = angular.module('todos',['contenteditable']);
 
 app.controller('contenteditableController', ['$scope', function($scope) {}]);
 
-app.controller('TodosController', function(){
+app.controller('TodosController', ['$rootScope', function($rootScope){
 	this.lists = lists;
-	this.searchfor = "";
+	this.searchBoxText = "Search...";
+	//this.searchQuery = "";
+	$rootScope.search=false;
 
 	this.toggle = function(list){
 		list.show= !list.show;
@@ -44,10 +46,23 @@ app.controller('TodosController', function(){
 			}
 		}
 	}
-});
 
-app.filter('textfilter',[ function () {
+	this.searchBoxFocus = function(){
+		$rootScope.search=true;
+		this.searchBoxText="";
+	}
+
+	this.searchBoxBlur = function(){
+		$rootScope.search=false;
+		this.searchBoxText="Search...";
+	}
+}]);
+
+app.filter('textfilter',['$rootScope', function ($rootScope) {
 	return function(items, searchString) {
+		if(!$rootScope.search)
+			return items;
+
 		var filtered = [];            
 		searchString = searchString.toLowerCase();
 		angular.forEach(items, function(item) {

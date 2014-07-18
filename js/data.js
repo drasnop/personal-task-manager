@@ -1,3 +1,5 @@
+var defaultSearchBoxText="Search...";
+
 var colors = {
 	white:"255,255,255",
 	green:"176,229,124",
