@@ -60,7 +60,6 @@ app.controller('TodosController', function($scope, focus){
 
 app.directive('focusOn', function() {
 	return function(scope, elem, attr) {
-		console.log("directive");
 		scope.$on('focusOn', function(e, name) {
 			if(name === attr.focusOn) {
 				elem[0].focus();
@@ -71,7 +70,6 @@ app.directive('focusOn', function() {
 
 app.factory('focus', function ($rootScope, $timeout) {
 	return function(name) {
-		console.log("factory");
 		$timeout(function (){
 			$rootScope.$broadcast('focusOn', name);
 		});

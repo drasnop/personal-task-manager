@@ -9,7 +9,6 @@
   <script type="text/javascript" src="js/libs/jquery-ui-1.10.3.js"></script>
   <script type="text/javascript" src="js/libs/angular.min.js"></script>
   <script type="text/javascript" src="js/libs/angular-contenteditable.js"></script>
-  <script type="text/javascript" src="js/auxiliary.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/data.js"></script>
   <script type="text/javascript" src="js/rendering.js"></script>
@@ -36,12 +35,12 @@
 
       <div id="lists_area">
 
-        <div class="todolist sortable" ng-repeat="list in todos.lists" ng-show="list.show" ng-hide="list.searchResults.length == 0" style={{"background-color: rgb("+list.color+")"}} ng-style="{'background-color': 'rgb('+list.color+')'}">
+        <div class="todolist sortable" ng-repeat="list in todos.lists" ng-show="list.show" ng-hide="list.searchResults.length == 0" ng-style="{'background-color': 'rgb('+list.colorAsString()+')'}">
 
           <div class="listName contenteditable" contenteditable>{{list.name}}</div>
 
           <div class='item' ng-repeat="task in list.searchResults=(list.tasks | filter:todos.searchQuery)" 
-          ng-style="{'background-color': 'rgb('+list.color+')'}" data-color={{list.color}} data-activated='false'> 
+          ng-style="{'background-color': 'rgb('+list.colorAsString()+')'}" data-activated='false'> 
           <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)">  
             <div class='square hiddenIcon' ng-hide="task.completed"></div>
             <div class='checkmark' ng-show="task.completed">✔</div>  

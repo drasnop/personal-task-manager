@@ -296,20 +296,17 @@ in a newly created item */
 	font-style: italic;
 }
 
-/*.item .dateTimeField{
-    display: none;
-    }*/
 
-    .hiddenIcon{
-    	visibility: hidden;
-    }
+.hiddenIcon{
+	visibility: hidden;
+}
 
-    .opacityButton{
-    	opacity:.6;
-    	cursor: pointer;
-    	/* z-index: 10;   dynamically modified */
-    }
+.opacityButton{
+	opacity:.6;
+	cursor: pointer;
+	/* z-index: 10;   dynamically modified */
+}
 
-    .opacityButton:hover{
-    	opacity:1;
-    }
+.opacityButton:hover{
+	opacity:1;
+}
