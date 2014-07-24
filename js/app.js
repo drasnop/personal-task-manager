@@ -15,6 +15,7 @@ app.controller('TodosController', function($scope, focus){
 		if(event.which==13){
 			list.tasks.push({description: list.newTask});
 			list.newTask="";	
+			initializeItemsBehavior();
 		}
 	};
 

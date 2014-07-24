@@ -9,10 +9,10 @@
   <script type="text/javascript" src="js/libs/jquery-ui-1.10.3.js"></script>
   <script type="text/javascript" src="js/libs/angular.min.js"></script>
   <script type="text/javascript" src="js/libs/angular-contenteditable.js"></script>
+  <script type="text/javascript" src="js/auxiliary.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/data.js"></script>
   <script type="text/javascript" src="js/rendering.js"></script>
-  <script type="text/javascript" src="js/auxiliary.js"></script>
 </head>
 
 <body ng-controller="TodosController as todos">
@@ -24,53 +24,52 @@
           <input type=checkbox  checked={{list.show}} ng-click="todos.toggle(list)"> {{list.name}}
         </li>
       </ul>
-    </div><!--
+    </div>
+    <div id="content">
+      <div id="header">
+        <div id="searchbox" ng-class="{'borderColorGrey':todos.activeSearch}">
+          <span ng-hide="todos.activeSearch" ng-click="todos.searchBoxFocus()"> Search...</span>
+          <input ng-show="todos.activeSearch" ng-model="todos.searchQuery" focus-on="input"></input>
+          <img class="opacityButton" src="img/xicon19.png" title="Clear search" ng-show="todos.activeSearch" ng-click="todos.clearSearch()"/>     
+        </div>
+      </div>
 
-  --><div id="content">
-  <div id="header">
-    <div id="searchbox" ng-class="{'borderColorGrey':todos.activeSearch}">
-      <span ng-hide="todos.activeSearch" ng-click="todos.searchBoxFocus()"> Search...</span>
-      <input ng-show="todos.activeSearch" ng-model="todos.searchQuery" focus-on="input"></input>
-      <img class="opacityButton" src="img/xicon19.png" title="Clear search" ng-show="todos.activeSearch" ng-click="todos.clearSearch()"/>     
+      <div id="lists_area">
+
+        <div class="todolist sortable" ng-repeat="list in todos.lists" ng-show="list.show" ng-hide="list.searchResults.length == 0" style={{"background-color: rgb("+list.color+")"}} ng-style="{'background-color': 'rgb('+list.color+')'}">
+
+          <div class="listName contenteditable" contenteditable>{{list.name}}</div>
+
+          <div class='item' ng-repeat="task in list.searchResults=(list.tasks | filter:todos.searchQuery)" 
+          ng-style="{'background-color': 'rgb('+list.color+')'}" data-color={{list.color}} data-activated='false'> 
+          <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)">  
+            <div class='square hiddenIcon' ng-hide="task.completed"></div>
+            <div class='checkmark' ng-show="task.completed">✔</div>  
+          </div>   
+          <div class='description contenteditable'
+          ng-controller="contenteditableController" contenteditable="true"
+          ng-model="task.description"
+          strip-br="true"
+          select-non-editable="true"></div>  
+          <div class='setDateTime'>    
+            <div class='contenteditable dateTimeField' contenteditable></div>    
+            <img class='hiddenIcon opacityButton' src='img/calendar16.png' title='Set date/time'>  
+          </div>   
+          <img class='pin hiddenIcon opacityButton' src='img/pin16.png' data-pinned='false' data-dialogueExpanded='false' title='Pin item to main list'>    
+        </div>
+
+        <div class='newItem contenteditable' ng-click="todos.newTaskClicked(list)" ng-blur="todos.newTaskBlurred(list)" ng-keypress="todos.addNewTask($event, list)" 
+        ng-controller="contenteditableController" contenteditable="true"
+        ng-model="list.newTask"
+        strip-br="true"
+        select-non-editable="true"></div> 
+
+        <img class='trashbin opacityButton' src='img/trashbin.png' title="Delete {{list.taskCompleted}} tasks" ng-show="list.taskCompleted" ng-click="todos.deleteCompletedTasks(list)">
+
+      </div>
+
     </div>
   </div>
-
-  <div id="lists_area">
-
-    <div class="todolist sortable" ng-repeat="list in todos.lists" ng-show="list.show" ng-hide="list.searchResults.length == 0" style={{"background-color: rgb("+list.color+")"}} ng-style="{'background-color': 'rgb('+list.color+')'}">
-
-      <div class="listName contenteditable" contenteditable>{{list.name}}</div>
-      
-      <div class='item' ng-repeat="task in list.searchResults=(list.tasks | filter:todos.searchQuery)" 
-      ng-style="{'background-color': 'rgb('+list.color+')'}" data-color={{list.color}} data-activated='false'> 
-      <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)">  
-        <div class='square hiddenIcon' ng-hide="task.completed"></div>
-        <div class='checkmark' ng-show="task.completed">✔</div>  
-      </div>   
-      <div class='description contenteditable'
-      ng-controller="contenteditableController" contenteditable="true"
-      ng-model="task.description"
-      strip-br="true"
-      select-non-editable="true"></div>  
-      <div class='setDateTime'>    
-        <div class='contenteditable dateTimeField' contenteditable></div>    
-        <img class='hiddenIcon opacityButton' src='img/calendar16.png' title='Set date/time'>  
-      </div>   
-      <img class='pin hiddenIcon opacityButton' src='img/pin16.png' data-pinned='false' data-dialogueExpanded='false' title='Pin item to main list'>    
-    </div>
-
-    <div class='newItem contenteditable' ng-click="todos.newTaskClicked(list)" ng-blur="todos.newTaskBlurred(list)" ng-keypress="todos.addNewTask($event, list)" 
-    ng-controller="contenteditableController" contenteditable="true"
-    ng-model="list.newTask"
-    strip-br="true"
-    select-non-editable="true"></div> 
-
-    <img class='trashbin opacityButton' src='img/trashbin.png' title="Delete {{list.taskCompleted}} tasks" ng-show="list.taskCompleted" ng-click="todos.deleteCompletedTasks(list)">
-
-  </div>
-
-</div>
-</div>
 </div>
 </body>
 </html>
