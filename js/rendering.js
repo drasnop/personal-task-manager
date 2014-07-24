@@ -17,26 +17,6 @@ function initializeItemsBehavior(){
 			$(this).parent('.item').next().children('.description').focus();
 		}
 	});
-
-	// pin items
-	item.children('.pin').click(function(){
-		if(!$(this).data('pinned'))
-		{
-			$(this).data('pinned',true);
-
-			$(this).attr('src','img/pinned16.png');
-			$(this).attr('title',"Unpin item from main list");
-			$(this).removeClass('hiddenIcon');
-		}
-		else
-		{
-			$(this).data('pinned',false);
-
-			$(this).attr('src','img/pin16.png');
-			$(this).attr('title',"Pin item to main list");
-			$(this).addClass('hiddenIcon');
-		}
-	});
 }
 
 $(document).ready(function(){

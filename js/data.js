@@ -51,6 +51,7 @@ var Task=function(description){
 	this.description=description;
 	this.completed=false;
 	this.hovered=false;
+	this.pinned=false;
 };
 
 

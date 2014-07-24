@@ -62,7 +62,7 @@
         <div class='contenteditable dateTimeField' contenteditable></div>    
         <img class='opacityButton' src='img/calendar16.png' title='Set date/time'>  
       </div>   
-      <img class='pin opacityButton' ng-show="task.hovered" src='img/pin16.png' title='Pin item to main list'>    
+      <img class='pin opacityButton' ng-show="task.hovered" ng-src="{{task.pinned ? 'img/pinned16.png' : 'img/pin16.png'}}" ng-click="task.pinned=!task.pinned" title='Pin item to main list'>    
     </div>
 
     <div class='newItem contenteditable' ng-click="todos.newTaskClicked(list)" ng-blur="todos.newTaskBlurred(list)" ng-keypress="todos.addNewTask($event, list)" 
