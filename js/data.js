@@ -22,15 +22,15 @@ var Todolist = function(name,color,tasks){
 
 	/* Used to display a task that has been crossed-out */
 	this.darkerColor=function(){
-		darker=[];
-		for(var i=0;i<3;i++){
+		var darker=[];
+		for(var i=0;i<color.length;i++){
 			darker[i]=Math.max(0,Math.min(255,color[i]+darkerColorOffset));
 		}
 		return darker;
 	};
 
 	this.darkerColorAsString=function(){
-		return darkColor.join(',');
+		return (this.darkerColor()).join(',');
 	};
 
 	this.colorAsString=function () {
@@ -64,8 +64,8 @@ tasks1.push(
 	);
 
 var tasks2=clone(tasks1);
-var tasks3=copyTasksArray(tasks1);
-var tasks4=copyTasksArray(tasks1);
+var tasks3=clone(tasks1);
+var tasks4=clone(tasks1);
 
 
 var lists = [];

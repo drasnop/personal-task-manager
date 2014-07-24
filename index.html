@@ -24,7 +24,9 @@
         </li>
       </ul>
     </div>
+
     <div id="content">
+
       <div id="header">
         <div id="searchbox" ng-class="{'borderColorGrey':todos.activeSearch}">
           <span ng-hide="todos.activeSearch" ng-click="todos.searchBoxFocus()"> Search...</span>
@@ -41,15 +43,19 @@
 
           <div class='item' ng-repeat="task in list.searchResults=(list.tasks | filter:todos.searchQuery)" 
           ng-style="{'background-color': 'rgb('+list.colorAsString()+')'}" data-activated='false'> 
-          <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)">  
+          <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)" ng-style="{color: 'rgb('+list.darkerColorAsString()+')'}">  
             <div class='square hiddenIcon' ng-hide="task.completed"></div>
             <div class='checkmark' ng-show="task.completed">✔</div>  
-          </div>   
+          </div>
+
           <div class='description contenteditable'
+          ng-class="{completed: task.completed}"
+          ng-style="{color: task.completed ? 'rgb('+list.darkerColorAsString()+')' : ''}"
           ng-controller="contenteditableController" contenteditable="true"
           ng-model="task.description"
           strip-br="true"
-          select-non-editable="true"></div>  
+          select-non-editable="true"></div>
+
           <div class='setDateTime'>    
             <div class='contenteditable dateTimeField' contenteditable></div>    
             <img class='hiddenIcon opacityButton' src='img/calendar16.png' title='Set date/time'>  

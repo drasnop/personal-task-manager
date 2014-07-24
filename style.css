@@ -228,6 +228,10 @@ body {
     min-height: 19px;
 }
 
+.item .description.completed{
+    text-decoration: line-through;
+}
+
 .item .checkbox{
 	width: 17px;
 	height: 23px;
