@@ -50,6 +50,7 @@ var Todolist = function(name,color,tasks){
 var Task=function(description){
 	this.description=description;
 	this.completed=false;
+	this.hovered=false;
 };
 
 

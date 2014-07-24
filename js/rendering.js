@@ -17,12 +17,6 @@ function insertItem(after,_this){
 	initializeItemsBehavior();
 }
 
-function countNumberOfItemsChecked(_todolist){
-	return _todolist.children('.item').children('.checkbox').filter(function(){
-		return $(this).data('checked') == true;
-	}).size();
-}
-
 function initializeItemsBehavior(){
 
 	var item=$('.item').filter(function() { 
