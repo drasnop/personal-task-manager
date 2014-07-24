@@ -31,10 +31,6 @@ app.controller('TodosController', function($scope, focus){
 
 	this.toggleTaskCheckbox = function(task, list){
 		task.completed= !task.completed;
-		if(task.completed)
-			list.taskCompleted++;
-		else
-			list.taskCompleted--;
 	};
 
 	this.deleteCompletedTasks = function(list){
@@ -42,20 +38,19 @@ app.controller('TodosController', function($scope, focus){
 			if(list.tasks[i].completed){
 				list.tasks.splice(i,1);
 				i--;
-				list.taskCompleted--;
 			}
 		}
-	}
+	};
 
 	this.searchBoxFocus = function(){
 		this.activeSearch=true;
 		focus("input");
-	}
+	};
 
 	this.clearSearch = function(){
 		this.activeSearch=false;
 		this.searchQuery="";
-	}
+	};
 });
 
 app.directive('focusOn', function() {

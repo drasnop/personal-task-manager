@@ -15,7 +15,6 @@ var Todolist = function(name,color,tasks){
 	
 	this.show=true;
 	this.newTask="Add task...";
-	this.taskCompleted=0;
 	
 	this.searchResults=[];
 	this.tasks=tasks;
@@ -36,6 +35,15 @@ var Todolist = function(name,color,tasks){
 	this.colorAsString=function () {
 		return color.join(',');
 	};
+
+	this.numCompletedTasks=function () {
+		var completed=0;
+		for(var i in this.tasks){
+			if(this.tasks[i].completed)
+				completed++;
+		}
+		return completed;
+	}
 };
 
 /* Object prototype for a task */
@@ -75,37 +83,3 @@ lists.push(
 	new Todolist("Long term",colors.yellow,tasks3),
 	new Todolist("Academic",colors.green,tasks4)
 	);
-
-
-/* Utility function required for deep copy */
-function clone(obj) {
-    // Handle the 3 simple types, and null or undefined
-    if (null == obj || "object" != typeof obj) return obj;
-
-    // Handle Date
-    if (obj instanceof Date) {
-        var copy = new Date();
-        copy.setTime(obj.getTime());
-        return copy;
-    }
-
-    // Handle Array
-    if (obj instanceof Array) {
-        var copy = [];
-        for (var i = 0, len = obj.length; i < len; i++) {
-            copy[i] = clone(obj[i]);
-        }
-        return copy;
-    }
-
-    // Handle Object
-    if (obj instanceof Object) {
-        var copy = {};
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
-        }
-        return copy;
-    }
-
-    throw new Error("Unable to copy obj! Its type isn't supported.");
-}
