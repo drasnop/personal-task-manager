@@ -130,36 +130,6 @@ body {
 
 /*////////////////       todo-lists         /////////////*/
 
-
-#todo-lists-area-wrapper {
-	height: 100%;
-	/*overflow-y: hidden;  why??? */
-	float: left;
-	position: relative;
-}
-
-#todo-lists-area {
-	width: 700px;
-	padding-left: 8px;
-	position: absolute;
-	top:3px;   /* to see the shadows casted by first lists */
-}
-
-.todo-lists-column{
-	width: 349px;
-	display: inline-block;
-	vertical-align: top;
-}
-
-
-
-
-/*            ANTOINE               */
-
-
-
-
-
 .todolist{
 	display: inline-block;
 	vertical-align: top;
@@ -201,11 +171,6 @@ body {
 
 	/* the only use of this is to get the icons inside to display correctly */
 	position: relative;
-}
-
-.contenteditable{
-	cursor: text;
-	outline: 0px;
 }
 
 .item .description{
@@ -269,12 +234,6 @@ body {
 	padding-left: 17px;
 }
 
-/* this is the only way I found to prevent an empty line
-in a newly created item */
-.contenteditable br{
-	display: none;
-}
-
 .item .pin{
 	position: absolute;
 	right: 4px;
@@ -300,15 +259,15 @@ in a newly created item */
 	font-style: italic;
 }
 
-
-.hiddenIcon{
-	visibility: hidden;
+/* Has to be at the bottom of the css file, to override other cursor attributes */
+.contenteditable{
+	cursor: text;
+	outline: 0px;
 }
 
 .opacityButton{
 	opacity:.6;
 	cursor: pointer;
-	/* z-index: 10;   dynamically modified */
 }
 
 .opacityButton:hover{

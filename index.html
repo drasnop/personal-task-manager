@@ -46,7 +46,7 @@
       ng-mouseenter="task.hovered=true"
       ng-mouseleave="task.hovered=false"> 
       <div class='checkbox' ng-click="todos.toggleTaskCheckbox(task,list)" ng-style="{color: 'rgb('+list.darkerColorAsString()+')'}">  
-        <div class='square hiddenIcon' ng-show="task.hovered && !task.completed"></div>
+        <div class='square' ng-show="task.hovered && !task.completed"></div>
         <div class='checkmark' ng-show="task.completed">✔</div>  
       </div>
 

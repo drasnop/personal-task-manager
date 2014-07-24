@@ -1,21 +1,3 @@
-// this can be either an item or the newItem button
-function insertItem(after,_this){
-	var color=_this.parent('.todolist').data('color');
-	var newItem;
-
-	if(after){
-		_this.after(generateEmptyItem(color));
-		newItem=_this.next();
-	}else{
-		_this.before(generateEmptyItem(color));
-		newItem=_this.prev()
-	}
-	newItem.children('.description').find('br').remove();  //has no effect!
-	newItem.children('.description').focus();
-	
-	newItem.data('activated',false);
-	initializeItemsBehavior();
-}
 
 function initializeItemsBehavior(){
 
@@ -23,14 +5,6 @@ function initializeItemsBehavior(){
   		return $(this).data("activated") == false; 
 	});
 	item.data('activated',true);
-
-	// toggle items icons
-	item.mouseenter(function(){
-		$(this).find('.hiddenIcon').css('visibility','visible');
-	});
-	item.mouseleave(function(){
-		$(this).find('.hiddenIcon').css('visibility','hidden');
-	});
 
 	// keyboard events
 	item.children('.description').keydown(function(event){
@@ -43,28 +17,6 @@ function initializeItemsBehavior(){
 			$(this).parent('.item').next().children('.description').focus();
 		}
 	});
-
-	// cross items out
-/*	item.children('.checkbox').click(function(){
-		var color=$(this).parent('.item').data('color');
-		var darkerColor=changeColor(color,-60);
-
-		if(!$(this).data('checked'))
-		{
-			$(this).data('checked',true);
-
-			// item, text and checkbox appearance
-			$(this).parent('.item').css('color','rgb('+colorToString(darkerColor)+')');
-			$(this).siblings('.description').css('text-decoration','line-through');
-		}
-		else{
-			$(this).data('checked',false);
-
-			// item, text and checkbox appearance
-			$(this).parent('.item').css('color','#191919');
-			$(this).siblings('.description').css('text-decoration','none');
-		}
-	});*/
 
 	// pin items
 	item.children('.pin').click(function(){
@@ -84,15 +36,6 @@ function initializeItemsBehavior(){
 			$(this).attr('title',"Pin item to main list");
 			$(this).addClass('hiddenIcon');
 		}
-	});
-
-	// Set time/date
-	var field;
-	item.children('.setDateTime').click(function(){
-		field=$(this);
-		$(this).children('.hiddenIcon').hide();
-		$(this).children('.contenteditable').show();
-		$(this).children('.contenteditable').focus();
 	});
 }
 
