@@ -76,6 +76,7 @@ tasks1.push(
 var tasks2=clone(tasks1);
 var tasks3=clone(tasks1);
 var tasks4=clone(tasks1);
+tasks4.push(new Task("test"));
 
 
 var lists = [];

@@ -1,4 +1,4 @@
-var app = angular.module('todos',['contenteditable']);
+var app = angular.module('todos',['contenteditable','ngAnimate']);
 
 app.controller('contenteditableController', ['$scope', function($scope) {}]);
 

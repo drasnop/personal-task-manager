@@ -141,9 +141,29 @@ body {
 	margin-left: 10px;
 	margin-right: 10px;
 
+	/*overflow:hidden;
+	max-height: 500px;
+	for sliding up the list, doesn't work. see http://stackoverflow.com/questions/3508605/css-transition-height-0-to-height-auto/8331169#8331169
+	*/
 
 	/* the only use of this is to get the trashbin to display correctly */
 	position: relative;
+}
+
+/* set up the animation (fires when the ng-hide class is added/removed) */
+.todolist.ng-hide-add, .todolist.ng-hide-remove {
+	transition:0.4s all linear;
+}
+
+/* beginning of the animation */
+.todolist.ng-hide-add-active, .todolist.ng-hide-remove-active {
+	display:inline-block !important;  /* otherwise display will be block, which breaks the formatting */
+}
+
+/* end of the animation */
+.todolist.ng-hide {
+	width:0;
+	/* it would be nice to have height:0 too, but doesn't work (see above) */
 }
 
 .todolist .trashbin{
@@ -173,6 +193,16 @@ body {
 	position: relative;
 }
 
+.item.ng-leave{
+	transition:0.4s all linear;
+}
+
+.item.ng-leave-active{
+	opacity:0;
+	min-height:0;
+	height:0;
+}
+
 .item .description{
 
 /*  Can't do that, otherwise item size won't adjust ot amount of text
@@ -194,7 +224,7 @@ body {
 }
 
 .item .description.completed{
-    text-decoration: line-through;
+	text-decoration: line-through;
 }
 
 .item .checkbox{

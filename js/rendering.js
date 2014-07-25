@@ -21,7 +21,6 @@ function initializeItemsBehavior(){
 
 $(document).ready(function(){
 
-
 	$('.sortable').sortable({
 		//cancel: '.listName,.hiddenIcon,.newItem,.description,.setDateTime,.trashbin',
 		items: '.item',
@@ -29,18 +28,6 @@ $(document).ready(function(){
 		appendTo: 'body',
 		connectWith: '.sortable'});
 
-/*	$('.todolist .trashbin').click(function(){
-		// foldUp the checked items and remove them
-		$(this).siblings('.item').filter(function() { 
-  			return $(this).children('.checkbox').data("checked") == true; 
-
-
-		}).css('height',$(this).height()).css('min-height',0).slideUp(400, function(){
-		
-
-			$(this).remove();
-		});
-	});*/
 
 	// Show/hide drop shadow from the header
 	$(window).scroll(function(){
